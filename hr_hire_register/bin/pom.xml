@@ -6,7 +6,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>hr_hire_register</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>hr_hire_register</name>
 	<description>hr auto register</description>
@@ -34,10 +34,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
 

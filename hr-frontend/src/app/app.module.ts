@@ -11,19 +11,23 @@ import { DataService } from './data.service';
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
 
 import {enableProdMode} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerDetailsComponent,
     CustomersComponent,
-    CreateCustomerComponent
+    CreateCustomerComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
 import { DataService } from '../data.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',

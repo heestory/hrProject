@@ -1,6 +1,33 @@
-<h2 style="color: blue">JSA - Angular Application!</h2>
+<!-- <h2 style="color: blue"> Angular Application!</h2>
 <nav>
 	<a routerLink="customer" class="btn btn-primary active" role="button" routerLinkActive="active">Customers</a> 
 	<a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">Add</a>
+</nav> -->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">SKEncar</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#myPage">HOME</a></li>
+        <li><a href="#band">ADMIN</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
+<header class="container-fluid">
+	<div [style.background-image]="'url('+imageUrl+')'" class="header-img">
+		<div id="img-text">Employment notice Automation
+		<a class="btn btn-primary btn-xl js-scroll-trigger" href="#list">Find Out More</a>
+		</div>
+	</div>
+</header>
+	
 <router-outlet></router-outlet>
