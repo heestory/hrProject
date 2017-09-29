@@ -11,62 +11,43 @@
 <header class="jumbotron my-4">
     <h1 class="display-3" id="list">Form</h1>
     <div class="row text-right">
-    <form>
+    <form (ngSubmit)="onSubmit()">
     	<div class="col-md-6">
     		 <div class="input-group">
 			    <span class="input-group-addon">이름</span>
-			    <input id="name" type="text" class="form-control" name="name" placeholder="Name">
+			    <input id="name" type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="submitValue.author">
 			  </div>
     	</div>
     	<div class="cod-md-6">
     		 <div class="input-group">
 			    <span class="input-group-addon">제목</span>
-			    <input id="name" type="text" class="form-control" name="name" placeholder="Title">
+			    <input id="name" type="text" class="form-control" name="name" placeholder="Title" [(ngModel)]="submitValue.title">
 			  </div>
     	</div>
     	
     	<button type="submit" class="btn btn-primary">등록</button>
-    	<button type="submit" class="btn btn-success">전체선택</button>
-    	<button type="submit" class="btn btn-warning">전체취소</button>
+    	<button type="button" class="btn btn-success">전체선택</button>
+    	<button type="button" class="btn btn-warning">전체취소</button>
     </form>
     </div>
 </header>
  <div class="row text-center">
-    <div class="col-md-4">
-    	<div class="well">
-		   	<label class="btn btn-info">
-				<input type="checkbox" class="btn btn-info" autocomplete="off">
-			</label>
-			<label class="site-name">DB CUT</label>
-		    <div class="well-button">
-		    	<button type="button" class="btn btn-success">활성</button>
-		    	<button type="button" class="btn btn-success">완료</button>
-		    </div>
+    <div class="col-md-12">
+    	<div *ngFor="let index of indexData">
+	    	<div class="well col-md-4" >
+			   	<label class="btn btn-info">
+					<input type="checkbox" class="btn btn-info" #all id="checkBox_{{index.siteNumber}}" name="{{index.siteName}}"autocomplete="off" value="{{index.siteNumber}}"  #cb (change)="addList(cb)">
+				</label>
+				<label class="site-name">{{index.siteName}}</label>
+			    <div class="well-button">
+			    	<span>
+			    		<button type="button" *ngIf="index.conCheckResult==200" class="btn btn-success">활성</button>
+			    		<button type="button" *ngIf="index.conCheckResult==404" class="btn btn-danger">비활성</button>
+			    	</span>
+			    	<button type="button" class="btn btn-success">완료</button>
+			    </div>
+	    	</div>
     	</div>
-    </div>
-     <div class="col-md-4">
-     	<div class="well">
-    	<label class="btn btn-info">
-			<input type="checkbox" class="btn btn-info" autocomplete="off">
-		</label>
-     	 <label class="site-name">Naver-GIMASA</label>
-    	 <div class="well-button">
-	    	<button type="button" class="btn btn-success">활성</button>
-	    	<button type="button" class="btn btn-danger">비완료</button>
-	    </div>
-     	</div>
-    </div>
-    <div class="col-md-4">
-     	<div class="well">
-     	 <label class="btn btn-info">
-			<input type="checkbox" class="btn btn-info" autocomplete="off">
-		</label>
-		<label class="site-name">Naver-GIMASA</label>
-     	 <div class="well-button">
-		   	<button type="button" class="btn btn-danger">비활성</button>
-		   	<button type="button" class="btn btn-danger">비완료</button>
-		 </div>
-     	</div>
     </div>
  </div>       
 </div>

@@ -6,7 +6,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-root',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css'],
+  styleUrls: ['./customers.component.css']
 })
 
 export class CustomersComponent implements OnInit {

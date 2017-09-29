@@ -12,16 +12,13 @@ import org.slf4j.LoggerFactory;
 
 public class UrlConnectionCheck {
 	
-	private String siteUrl;
-	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public UrlConnectionCheck(String siteUrl) {
-		this.siteUrl = siteUrl;
+	public UrlConnectionCheck() {
 	}
 	
-	public static UrlConnectionCheck getInstance(String siteUrl) {
-		return new UrlConnectionCheck(siteUrl);
+	public static UrlConnectionCheck getInstance() {
+		return new UrlConnectionCheck();
 	}
 	
 	public String getConnectionResult(String siteUrl) {

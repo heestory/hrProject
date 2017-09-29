@@ -14,6 +14,8 @@ import {enableProdMode} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './index/index.component';
 
+import {IndexService} from './index.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,7 @@ import { IndexComponent } from './index/index.component';
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [DataService],
+  providers: [DataService, IndexService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
