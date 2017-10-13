@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hr.register.domain.Customer;
 import com.hr.register.domain.InitList;
 import com.hr.register.domain.Submit;
+import com.hr.register.service.IndexService;
 import com.hr.register.utils.UrlConnectionCheck;
 
 @RestController
@@ -24,6 +26,9 @@ import com.hr.register.utils.UrlConnectionCheck;
 public class IndexController {
 	
 	UrlConnectionCheck conInstance = UrlConnectionCheck.getInstance();
+	
+	@Autowired
+	public IndexService indexService; 
 	
 	private Map<Integer, InitList> initLists = new HashMap<Integer, InitList>(){
 		{
@@ -49,18 +54,17 @@ public class IndexController {
 		List<InitList> indexResults = initLists.entrySet().stream()
 				.map(entry ->entry.getValue())
 				.collect(Collectors.toList());
+		//결과값 초기화
+		for(int i = 0; i<indexResults.size(); i++ ) {
+			indexResults.get(i).setResult(false);
+		}
+		
 		return indexResults;
 	}
 	
 	@PostMapping(value="/create")
 	public List<InitList> create(@RequestBody Submit submit){
-		
-		String submitList = submit.getSubmitList();
-		String[] array = submitList.split(",");
-		
-		
-		
-		List<InitList> InitList = null;
+		List<InitList> InitList = indexService.arrangeList(initLists, submit);
 		return InitList;
 	}
 	

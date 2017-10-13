@@ -7,6 +7,7 @@ public class InitList {
 	private String conCheckResult;
 	private boolean result;
 	
+	
 	public InitList() {};
 	
 	public InitList(String siteName, int siteNumber, String conCheckResult, boolean result) {

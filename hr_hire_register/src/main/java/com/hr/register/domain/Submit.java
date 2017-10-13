@@ -6,7 +6,29 @@ public class Submit {
 	private String author;
 	private String uploadFile;
 	private String submitList;
+	private String id;
+	private String pw;
+	private String fileName;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getTitle() {
 		return title;
 	}

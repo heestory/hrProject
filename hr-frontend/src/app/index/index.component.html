@@ -12,16 +12,30 @@
     <h1 class="display-3" id="list">Form</h1>
     <div class="row text-right">
     <form (ngSubmit)="onSubmit()">
-    	<div class="col-md-6">
+    	<div class="col-md-4">
     		 <div class="input-group">
-			    <span class="input-group-addon">이름</span>
+			    <span class="input-group-addon">작성자</span>
 			    <input id="name" type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="submitValue.author">
 			  </div>
-    	</div>
-    	<div class="cod-md-6">
-    		 <div class="input-group">
+			  <div class="input-group">
 			    <span class="input-group-addon">제목</span>
-			    <input id="name" type="text" class="form-control" name="name" placeholder="Title" [(ngModel)]="submitValue.title">
+			    <input id="title" type="text" class="form-control" name="title" placeholder="Title"  [(ngModel)]="submitValue.title">
+			  </div>
+    	</div>
+    	<div class="col-md-4">
+    		 <div class="input-group">
+			    <span class="input-group-addon">접속아이디</span>
+			    <input id="id" type="text" class="form-control" name="id" placeholder="ID" [(ngModel)]="submitValue.id">
+			  </div>
+			  <div class="input-group">
+			    <span class="input-group-addon">접속비번</span>
+			    <input id="pw" type="text" class="form-control" name="pw" placeholder="PW" [(ngModel)]="submitValue.pw">
+			  </div>
+    	</div>
+   		<div class="col-md-4">
+    		 <div class="input-group">
+			    <span class="input-group-addon">업로드</span>
+			    <input id="input-b2" name="input-b2" type="file" class="form-control" data-show-preview="false" [(ngModel)]="submitValue.filePath">
 			  </div>
     	</div>
     	
@@ -44,7 +58,10 @@
 			    		<button type="button" *ngIf="index.conCheckResult==200" class="btn btn-success">활성</button>
 			    		<button type="button" *ngIf="index.conCheckResult==404" class="btn btn-danger">비활성</button>
 			    	</span>
-			    	<button type="button" class="btn btn-success">완료</button>
+			    	<span>
+			    		<button type="button" *ngIf="index.result==true" class="btn btn-success">완료</button>
+			    		<button type="button" *ngIf="index.result==false" class="btn btn-danger">비완료</button>
+			    	</span>
 			    </div>
 	    	</div>
     	</div>

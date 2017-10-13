@@ -15,6 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './index/index.component';
 
 import {IndexService} from './index.service';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {IndexService} from './index.service';
     CustomersComponent,
     CreateCustomerComponent,
     IndexComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

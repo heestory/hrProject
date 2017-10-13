@@ -4,5 +4,8 @@ export class Submit {
 	author : string;
 	uploadFile : string;
 	submitList : string;
+	id : string;
+	pw : string;
+	fileName : string;
 	
 }
