@@ -16,28 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hr.register.domain.Customer;
+import com.hr.register.domain.Images;
 import com.hr.register.domain.InitList;
-import com.hr.register.domain.Submit;
-import com.hr.register.service.IndexService;
-import com.hr.register.utils.UrlConnectionCheck;
+import com.hr.register.resource.Datas;
+import com.hr.register.service.StorageService;
 
 @RestController
 @RequestMapping(value="/api")
 public class IndexController {
 	
-	UrlConnectionCheck conInstance = UrlConnectionCheck.getInstance();
-	
 	@Autowired
-	public IndexService indexService; 
-	
-	private Map<Integer, InitList> initLists = new HashMap<Integer, InitList>(){
-		{
-			put(1, new InitList("DBCUT",1,conInstance.getConnectionResult("https://www.dbcu.com/bbs/bbs.php?table=job"),false));
-			put(2, new InitList("GIMASA",2,conInstance.getConnectionResult("http://cafe.naver.com/newplanmarketing"),false));
-			put(3, new InitList("Designjob",3,conInstance.getConnectionResult("http://www.designjob.co.kr/"),false));
-			put(4, new InitList("WebManSa",4,conInstance.getConnectionResult("http://cafe.naver.com/netmaru"),false));
-		}
-	};
+	public StorageService storageService;
 	
 	private Map<Integer, Customer> customers = new HashMap<Integer, Customer>(){
 
@@ -51,23 +40,21 @@ public class IndexController {
 	
 	@GetMapping(value="/index")
 	public List<InitList> index() {
-		List<InitList> indexResults = initLists.entrySet().stream()
+		
+		//업로드된 파일 초기화
+		storageService.init();
+		
+		List<InitList> indexResults = Datas.initLists.entrySet().stream()
 				.map(entry ->entry.getValue())
 				.collect(Collectors.toList());
-		//결과값 초기화
-		for(int i = 0; i<indexResults.size(); i++ ) {
-			indexResults.get(i).setResult(false);
-		}
 		
 		return indexResults;
 	}
 	
-	@PostMapping(value="/create")
-	public List<InitList> create(@RequestBody Submit submit){
-		List<InitList> InitList = indexService.arrangeList(initLists, submit);
-		return InitList;
+	@GetMapping(value="/images")
+	public List<Images> images() {
+		return storageService.getImages();
 	}
-	
 	
 	
 	@GetMapping(value="/customer")

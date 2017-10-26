@@ -11,7 +11,7 @@
 <header class="jumbotron my-4">
     <h1 class="display-3" id="list">Form</h1>
     <div class="row text-right">
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     	<div class="col-md-4">
     		 <div class="input-group">
 			    <span class="input-group-addon">작성자</span>
@@ -35,7 +35,7 @@
    		<div class="col-md-4">
     		 <div class="input-group">
 			    <span class="input-group-addon">업로드</span>
-			    <input id="input-b2" name="input-b2" type="file" class="form-control" data-show-preview="false" [(ngModel)]="submitValue.filePath">
+			    <input id="file" name="file" type="file" class="form-control" (change)="selectFile($event)">
 			  </div>
     	</div>
     	
@@ -46,6 +46,8 @@
     </div>
 </header>
  <div class="row text-center">
+ 	<app-spinner [busy]="isSpinnerActive" message="loading...">
+ 	</app-spinner>
     <div class="col-md-12">
     	<div *ngFor="let index of indexData">
 	    	<div class="well col-md-4" >
@@ -66,6 +68,7 @@
 	    	</div>
     	</div>
     </div>
+    
  </div>       
 </div>
 

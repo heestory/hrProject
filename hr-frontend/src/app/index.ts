@@ -4,5 +4,6 @@ export class Index {
 	siteNumber : number;
 	conCheckResult : string;
 	result : string;
+	totalResult : string = 'false';
 	
 }

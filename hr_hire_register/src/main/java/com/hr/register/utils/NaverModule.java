@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,10 +15,14 @@ import com.hr.register.domain.Submit;
 
 public class NaverModule {
 	
+	
+	private NaverModule() {
+		
+	}
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public static WebDriver naverModule(WebDriver driver, String siteUrl, String menuName, Submit submit, String imageFileName) throws Exception{
+	public static WebDriver naverModule(WebDriver driver, String siteUrl, String menuName, Submit submit, String filePath, String filename) throws Exception{
 		
 		
 		String parentHandle="";
@@ -32,6 +37,10 @@ public class NaverModule {
 	    driver.findElement(By.id("pw")).clear();
 	    driver.findElement(By.id("pw")).sendKeys(submit.getPw());
 	    driver.findElement(By.cssSelector("input.btn_global")).click();
+	    
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    jse.executeScript("window.scrollBy(0,1000)", "");
+	    Thread.sleep(1000);
 	    driver.findElement(By.id(menuName)).click();
 	    driver.switchTo().frame("cafe_main");
 	    WebDriverWait wait4 = new WebDriverWait(driver, 30);// 1 minute 
@@ -57,7 +66,8 @@ public class NaverModule {
 	            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.npe_alert_btn_close")));
 	            driver.findElement(By.cssSelector("button.npe_alert_btn_close")).click();
 	            driver.findElement(By.id("pc_image_file")).clear();
-	            driver.findElement(By.id("pc_image_file")).sendKeys("C:\\Users\\JH-PC\\Desktop\\selenium\\1.JPG");
+	            driver.findElement(By.id("pc_image_file")).sendKeys(filePath
+	            		/*"C:\\Users\\JH-PC\\Desktop\\selenium\\1.JPG"*/);
 	            Thread.sleep(1000);
 	            driver.findElement(By.cssSelector("button.npu_btn.npu_btn_submit")).click();
 	            Thread.sleep(1000);
@@ -69,7 +79,7 @@ public class NaverModule {
 	    driver.findElement(By.id("cafewritebtn")).click();
 	    Thread.sleep(3000);
 	    
-	    TakeSnapShot.takeShot(driver, imageFileName);
+	    TakeSnapShot.takeShot(driver, filename);
 		
 		return driver;
 	}

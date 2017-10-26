@@ -1,26 +1,19 @@
 package com.hr.register.utils;
 
 import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class TakeSnapShot {
 	
-	public static void takeShot(WebDriver webdriver, String fileName) throws Exception{
+	private TakeSnapShot() {}
+	
+	public static void takeShot(WebDriver webdriver, String fileName){
 		
-	    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	    String realPath = request.getSession().getServletContext().getRealPath("/");
-	    File file = new File(realPath+"\\images");
-	    if(!file.exists()) {
-	    	file.mkdirs();
-	    }
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
 
         //Call getScreenshotAs method to create image file
@@ -29,11 +22,16 @@ public class TakeSnapShot {
 
         //Move image file to new destination
 
-        File DestFile=new File(file.getAbsolutePath()+"\\"+fileName+".png");
+        File DestFile=new File(Util.filePath("images")+fileName+".png");
 
         //Copy file at destination
 
-        FileUtils.copyFile(SrcFile, DestFile);
+        try {
+			FileUtils.copyFile(SrcFile, DestFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

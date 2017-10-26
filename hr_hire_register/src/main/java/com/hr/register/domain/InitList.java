@@ -6,15 +6,21 @@ public class InitList {
 	private int siteNumber;
 	private String conCheckResult;
 	private boolean result;
-	
-	
-	public InitList() {};
+	private boolean totalResult;
 	
 	public InitList(String siteName, int siteNumber, String conCheckResult, boolean result) {
 		this.siteName = siteName;
 		this.siteNumber = siteNumber;
 		this.conCheckResult = conCheckResult;
 		this.result = result;
+	}
+	
+	public boolean isTotalResult() {
+		return totalResult;
+	}
+
+	public void setTotalResult(boolean totalResult) {
+		this.totalResult = totalResult;
 	}
 
 	public String getSiteName() {
